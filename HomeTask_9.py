@@ -11,14 +11,19 @@ etc
 #######################
 """
 import re
+
 with open('input.txt', 'r') as inp:  # open the file for reading
     data = inp.read()
-    regexp = re.findall(r'[a-zA-Z]', data)  # find the all characters from english alphabet
-    with open('output.txt', 'w') as out:  # open the file for writing
-        for i in regexp:  # collect these characters and their positions in file
-            out.write(f'{i} -> pos{regexp.index(i) + 1}\n')
-    with open('output.txt', 'r') as out: # open the file for reading
-        output_text = out.read()
-print(output_text)
+    regexp = re.finditer(r'[a-zA-Z]', data)  # find the all characters from english alphabet
+    d1 = {i.group(): i.start() for i in regexp}  # collect these characters and their positions in file
+output = ""  # prepare the string of letters and positions
+for key, value in d1.items():
+    output += f"{key} -> {value}\n"
+
+    with open('output.txt', 'w') as out:  # open the file for writing of the prepared string
+        out.write(output)
+print(output)
+
+
 
 
