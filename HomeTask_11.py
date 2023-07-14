@@ -16,3 +16,5 @@ print(range_list)
 chunk_size = 3
 for i in range(0, len(range_list), chunk_size):
    print(range_list[i:i+chunk_size])
+# _______
+
